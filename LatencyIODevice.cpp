@@ -93,7 +93,7 @@ qint64 LatencyIODevice::writeData(const char *data, qint64 maxSize)
 
 void LatencyIODevice::handleReadyRead()
 {
-	qint64 got = mDevice->bytesAvailable() - readQueueByteSize;
+	qint64 got = mDevice->bytesAvailable() - readQueueByteSize - readableBytes;
 	if (got > 0) {
 		int latency = mLatencyModel ? mLatencyModel->readLatency(got) : 0;
 		qint64 time = QDateTime::currentMSecsSinceEpoch() + latency;
