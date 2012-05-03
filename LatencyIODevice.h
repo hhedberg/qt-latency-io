@@ -39,8 +39,9 @@ public:
 	virtual ~LatencyIODevice() { }
 
 	qint64 bytesAvailable() const;	
-	QIODevice *device();
-	AbstractLatencyModel *latencyModel();
+	QIODevice *device() const;
+	bool isSequential() const;
+	AbstractLatencyModel *latencyModel() const;
 	void setLatencyModel(AbstractLatencyModel *latencyModel);
 	
 protected:

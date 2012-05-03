@@ -39,15 +39,20 @@ LatencyIODevice::LatencyIODevice(QIODevice *device, AbstractLatencyModel *latenc
 
 qint64 LatencyIODevice::bytesAvailable() const
 {
-	return readableBytes;
+	return QIODevice::bytesAvailable() + readableBytes;
 }
 
-QIODevice *LatencyIODevice::device()
+QIODevice *LatencyIODevice::device() const
 {
 	return mDevice;
 }
 
-AbstractLatencyModel *LatencyIODevice::latencyModel()
+bool LatencyIODevice::isSequential() const
+{
+	return true;
+}
+
+AbstractLatencyModel *LatencyIODevice::latencyModel() const
 {
 	return mLatencyModel;
 }
